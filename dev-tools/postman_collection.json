@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "RAG News API - Collection",
+    "_postman_id": "rag-news-api",
+    "description": "Postman collection for RAG News API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "sessionId", "value": "demo1" }
+  ],
+  "item": [
+    {
+      "name": "Ingest",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/ingest", "host": ["{{baseUrl}}"], "path": ["ingest"] }
+      }
+    },
+    {
+      "name": "Chat",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"sessionId\": \"{{sessionId}}\",\n  \"query\": \"Tell me about the news\"\n}" },
+        "url": { "raw": "{{baseUrl}}/chat", "host": ["{{baseUrl}}"], "path": ["chat"] }
+      }
+    },
+    {
+      "name": "Get History",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/history/{{sessionId}}", "host": ["{{baseUrl}}"], "path": ["history", "{{sessionId}}"] }
+      }
+    },
+    {
+      "name": "Delete History",
+      "request": {
+        "method": "DELETE",
+        "url": { "raw": "{{baseUrl}}/history/{{sessionId}}", "host": ["{{baseUrl}}"], "path": ["history", "{{sessionId}}"] }
+      }
+    }
+  ]
+}

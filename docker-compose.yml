@@ -1,0 +1,55 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: app
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB: ${MYSQL_DB}
+      REDIS_URL: "redis://redis:6379"
+      QDRANT_URL: "http://qdrant:6333"
+    depends_on:
+      - db
+      - redis
+      - qdrant
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "const http=require('http'); const req=http.get('http://localhost:3000', res=>{ process.exit(res.statusCode===200?0:1) }); req.on('error', ()=>process.exit(1)); setTimeout(()=>process.exit(1),5000);"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    # Note: healthcheck now probes the app HTTP root (/) and will mark the container healthy when it returns 200; adjust as needed.
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB}
+      # Use a non-root DB user (MySQL docker image disallows MYSQL_USER=root)
+      MYSQL_USER: app
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    # Use the image's default command/entrypoint — overriding with `qdrant` caused "executable not found"
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant-data:/qdrant/storage
+
+volumes:
+  db-data:
+  qdrant-data:

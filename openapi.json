@@ -1,0 +1,68 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "RAG News API",
+    "version": "1.0.0",
+    "description": "OpenAPI spec for the RAG News API (ingest, chat, history)."
+  },
+  "servers": [
+    { "url": "http://localhost:3000" }
+  ],
+  "paths": {
+    "/ingest": {
+      "post": {
+        "summary": "Ingest sample news articles",
+        "responses": {
+          "200": { "description": "Ingested", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/IngestResponse" } } } },
+          "500": { "description": "Server error", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/chat": {
+      "post": {
+        "summary": "Chat with RAG",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ChatRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Reply", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ChatResponse" } } } },
+          "400": { "description": "Bad request", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "500": { "description": "Server error", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/history/{sessionId}": {
+      "get": {
+        "summary": "Get session history",
+        "parameters": [{ "name": "sessionId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "History", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/HistoryResponse" } } } },
+          "500": { "description": "Server error", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      },
+      "delete": {
+        "summary": "Delete session history",
+        "parameters": [{ "name": "sessionId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "Deleted", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DeleteResponse" } } } },
+          "500": { "description": "Server error", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IngestResponse": { "type": "object", "properties": { "message": { "type": "string" } } },
+      "ChatRequest": { "type": "object", "required": ["sessionId", "query"], "properties": { "sessionId": { "type": "string" }, "query": { "type": "string" } } },
+      "ChatResponse": { "type": "object", "properties": { "response": { "type": "string" }, "sources": { "type": "array", "items": { "type": "string" } } } },
+      "HistoryResponse": { "type": "object", "properties": { "sessionId": { "type": "string" }, "history": { "type": "array", "items": { "type": "object", "properties": { "user_query": { "type": "string" }, "llm_response": { "type": "string" }, "created_at": { "type": "string", "format": "date-time" } } } } } },
+      "DeleteResponse": { "type": "object", "properties": { "message": { "type": "string" } } },
+      "Error": { "type": "object", "properties": { "error": { "type": "string" } } }
+    }
+  }
+}
