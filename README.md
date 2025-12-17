@@ -96,6 +96,29 @@ cd rag-news-api
 cp .env.example .env
 # Edit .env and set MYSQL credentials, JINA_API_KEY, GEMINI_API_KEY etc.
 ```
+```bash
+# Database
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_PASSWORD=changeme
+MYSQL_DB=rag_news
+PORT=3000
+
+# Redis
+REDIS_URL=redis://localhost:6379
+
+# Qdrant
+QDRANT_URL=http://localhost:6333
+QDRANT_COLLECTION=news_vectors
+
+# Jina (embeddings)
+JINA_API_KEY=
+
+# Google Gemini (GenAI)
+GEMINI_API_KEY=
+GEMINI_MODEL=gemini-2.5-flash
+```
+
 
 3. Install dependencies
 
@@ -292,6 +315,7 @@ Thanks to the Jina, Qdrant, Google GenAI, Redis, and MySQL communities and libra
 **Status:** WIP
 
 **Created by:** Sayan Jagulia
+
 
 
 
