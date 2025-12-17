@@ -86,7 +86,7 @@ This project was built specifically to satisfy the Backend Developer Assessment 
 1. Clone the repository
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/SaYaN00101/rag-news-api.git
 cd rag-news-api
 ```
 
@@ -196,16 +196,6 @@ rag-news-api/
 
 ---
 
-## Screenshots
-
-> Placeholder screenshot: Ingestion success message (shows HTTP response and MySQL table count)
-
-> Placeholder screenshot: Chat response with retrieved sources
-
-> Placeholder screenshot: Docker Compose services running (MySQL, Redis, Qdrant, API)
-
----
-
 ## Integration / External Services Setup
 
 ### Jina AI (Embeddings)
@@ -281,9 +271,9 @@ Thanks to the Jina, Qdrant, Google GenAI, Redis, and MySQL communities and libra
 
 ## Contact
 
-- GitHub: [your-github-username](https://github.com/your-github-username)
-- Email: hr@edwidtech.com (for submissions)
-- LinkedIn: https://www.linkedin.com/in/your-profile
+- GitHub: [your-github-username](https://github.com/SaYaN00101)
+- Email: sayanjagulia489@gmail.com
+- LinkedIn: https://www.linkedin.com/in/sayan-jagulia
 
 ---
 
@@ -302,5 +292,6 @@ Thanks to the Jina, Qdrant, Google GenAI, Redis, and MySQL communities and libra
 **Status:** WIP
 
 **Created by:** Sayan Jagulia
+
 
 
