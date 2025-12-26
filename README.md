@@ -29,8 +29,6 @@ This project was built specifically to satisfy the Backend Developer Assessment 
 | REST APIs | ✅ All required endpoints |
 | Docker Compose | ✅ Included |
 
-> This section helps reviewers and HR quickly verify which assessment items are implemented.
-
 ---
 
 ## Features
@@ -317,6 +315,7 @@ Thanks to the Jina, Qdrant, Google GenAI, Redis, and MySQL communities and libra
 **Status:** WIP
 
 **Created by:** Sayan Jagulia
+
 
 
 
