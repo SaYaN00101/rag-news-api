@@ -4,7 +4,9 @@
 [![Express](https://img.shields.io/badge/Express-5.2-blue)](https://expressjs.com/)
 [![License: ISC](https://img.shields.io/badge/license-ISC-blue.svg)](LICENSE)
 [![Status: Assessment Submission](https://img.shields.io/badge/status-Assessment%20Submission-brightgreen)](#)
-[![Docker](https://img.shields.io/badge/docker-compose-ready-blue)](#)
+![Docker](https://img.shields.io/badge/docker--compose-ready-blue)
+
+
 
 ## Overview
 
@@ -315,6 +317,7 @@ Thanks to the Jina, Qdrant, Google GenAI, Redis, and MySQL communities and libra
 **Status:** WIP
 
 **Created by:** Sayan Jagulia
+
 
 
 
